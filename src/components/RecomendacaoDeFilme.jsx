@@ -4,6 +4,7 @@ import { FaStar, FaSortAmountDownAlt, FaSortAmountUp } from "react-icons/fa";
 import AnimatedPage from './AnimatedPage';
 import { Link, useLocation } from 'react-router-dom';
 import ViewFilter from './ViewFilter';
+import BackToTop from './BackToTop';
 
 
 
@@ -98,6 +99,7 @@ const RecomendacaoDeFilme = () => {
         </div>
         
     </div>
+    <BackToTop/>
     </AnimatedPage>
     </>
   )
