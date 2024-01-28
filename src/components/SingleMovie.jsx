@@ -18,7 +18,7 @@ const SingleMovie = () => {
             .then((response)=> {
                 
                     setFilme(response.data)
-                    const location = JSON.parse(localStorage.getItem('location'));
+                    const location = JSON.parse(sessionStorage.getItem('location'));
                         if (location) {
                         setLastLocation(location);
                         }

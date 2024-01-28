@@ -17,7 +17,7 @@ const ViewNoDetail = () => {
     axios.get(FILMESURL)
             .then((response)=> {
                 setFilmes(response.data)
-                localStorage.setItem('location', JSON.stringify(location.pathname));
+                sessionStorage.setItem('location', JSON.stringify(location.pathname));
             })
             .catch((err) => { console.log(err)})
      
@@ -34,18 +34,18 @@ const ViewNoDetail = () => {
     })
 
 
-    const [sortState, setSortState] = useState(!(localStorage.getItem('sorted')) ? "descending" : localStorage.getItem('sorted'));
+    const [sortState, setSortState] = useState(!(sessionStorage.getItem('sorted')) || sessionStorage.getItem('sorted') == false ? "descending" : sessionStorage.getItem('sorted'));
     const sortMethods = {
     ascending: { method: (a, b) => (a.vote_average > b.vote_average ? 1 : -1) },
     descending: { method: (a, b) => (a.vote_average > b.vote_average ? -1 : 1) },
   };
 
     const setDescending = () => {
-        localStorage.setItem('sorted', 'descending')
+        sessionStorage.setItem('sorted', 'descending')
     }
     
     const setAscending = () => {
-        localStorage.setItem('sorted', 'ascending')
+        sessionStorage.setItem('sorted', 'ascending')
     }
 
     const setScrollPosition = () => {
