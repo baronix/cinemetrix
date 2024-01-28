@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: OldStandardTT;
+  src: url("assets/fonts/AlegreyaSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: BebasNeue;
+  src: url("assets/fonts/Exo2-Bold.ttf") format("truetype");
+}
