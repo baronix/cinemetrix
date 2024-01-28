@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import axios from 'axios';
 import { FaStar, FaSortAmountDownAlt, FaSortAmountUp } from "react-icons/fa";
 import AnimatedPage from './AnimatedPage';
@@ -24,13 +24,33 @@ const RecomendacaoDeFilme = () => {
      
     }, []);
 
-    const [sortState, setSortState] = useState("descending");
+    useLayoutEffect(()=>{
+        {
+            sessionStorage.getItem('scrollPosition')
+            ? 
+            scrollTo(0,sessionStorage.getItem('scrollPosition')) 
+            : 
+            scrollTo(0,0)
+        }
+    })
+
+    const [sortState, setSortState] = useState(!(localStorage.getItem('sorted')) ? "descending" : localStorage.getItem('sorted'));
     const sortMethods = {
         ascending: { method: (a, b) => (a.vote_average > b.vote_average ? 1 : -1) },
         descending: { method: (a, b) => (a.vote_average > b.vote_average ? -1 : 1) },
     };
 
+    const setDescending = () => {
+        localStorage.setItem('sorted', 'descending')
+    }
     
+    const setAscending = () => {
+        localStorage.setItem('sorted', 'ascending')
+    }
+
+    const setScrollPosition = () => {
+        sessionStorage.setItem('scrollPosition', window.pageYOffset)
+    }
 
   return (
     <>
@@ -41,14 +61,14 @@ const RecomendacaoDeFilme = () => {
             <div className='flex min-w-full justify-between px-4'>
                 <ViewFilter/>
                 <div className='flex pt-3 pb-5'>
-                    <button className='pr-3 lg:hover:scale-105 duration-300'><FaSortAmountDownAlt color='white' size={20} onClick={() => setSortState("descending")}/></button>
-                    <button className='lg:hover:scale-105 duration-300'><FaSortAmountUp color='white' size={20} onClick={() => setSortState("ascending")}/></button>
+                    <button className='pr-3 lg:hover:scale-105 duration-300' onClick={setDescending}><FaSortAmountDownAlt color='white' size={20} onClick={() => setSortState("descending")}/></button>
+                    <button className='lg:hover:scale-105 duration-300' onClick={setAscending}><FaSortAmountUp color='white' size={20} onClick={() => setSortState("ascending")}/></button>
                 </div>
             </div>
 
             <div className='max-w-[1280px] justify-center items-center mx-auto px-4'>
                 {filmes.results?.sort(sortMethods[sortState].method).map(filme => (
-                <Link key={filme.id} to={`/movie/${filme.id}`}>
+                <Link key={filme.id} to={`/movie/${filme.id}`} onClick={setScrollPosition}>
                 <div id={filme.id} className=" h-auto min-w-[100%] mb-3 max-w-[90%] flex shadow-lg shadow-black rounded-md bg-gradient-to-r from-gray-100 to-gray-300 lg:hover:scale-105 duration-300" >
                     <div className=" h-full w-48 flex-none bg-cover rounded-l lg:rounded-t-none lg:rounded-l text-center overflow-hidden" title={filme.title}>
                         <img className='rounded-l' src={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`} alt="" />

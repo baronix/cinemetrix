@@ -36,4 +36,5 @@ This project was built using:
     <li>Vercel</li>
     <li>React Icons</li>
     <li>Google Fonts</li>
+    <li>SessionStorage</li>
 </ul>
