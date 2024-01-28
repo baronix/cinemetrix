@@ -8,6 +8,7 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 const SingleMovie = () => {
     const params = useParams();
     const [filme, setFilme] = useState([])
+    const [lastLocation, setLastLocation] = useState();
 
     const FILMESURL = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${import.meta.env.VITE_APIKEY}`;
     
@@ -17,12 +18,17 @@ const SingleMovie = () => {
             .then((response)=> {
                 
                     setFilme(response.data)
+                    const location = JSON.parse(localStorage.getItem('location'));
+                        if (location) {
+                        setLastLocation(location);
+                        }
             
             })
             .catch((err) => { console.log(err)})
      
   }, []);
 
+    
 
   return (
     <AnimatedPage>
@@ -52,7 +58,7 @@ const SingleMovie = () => {
             <img className='rounded-md pb-3 ' src={`https://image.tmdb.org/t/p/w500/${filme.backdrop_path}`} alt="" />
             <p className='text-md pb-3 text-white font-secondary max-w-[80%] lg:text-left text-center'>{filme.overview}</p>
             <div className='flex pb-10 lg:pb-0'>
-                <button className='bg-white px-3 py-1 rounded lg:hover:scale-105 duration-300 font-primary shadow-lg shadow-black mr-3'><Link to={"/"}><IoArrowBackCircleOutline size="40"/></Link></button>
+                <button className='bg-white px-3 py-1 rounded lg:hover:scale-105 duration-300 font-primary shadow-lg shadow-black mr-3'><Link to={lastLocation}><IoArrowBackCircleOutline size="40"/></Link></button>
                 <button className='bg-white px-3 py-1 rounded lg:hover:scale-105 duration-300 font-primary shadow-lg shadow-black'><a href={`https://www.imdb.com/title/${filme.imdb_id}`}>Visit IMDb</a></button>
             </div>
         </div>

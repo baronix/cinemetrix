@@ -1,24 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useLayoutEffect } from 'react'
 import axios from 'axios';
 import { FaStar, FaSortAmountDownAlt, FaSortAmountUp } from "react-icons/fa";
 import AnimatedPage from './AnimatedPage';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ViewFilter from './ViewFilter';
 
 const ViewNoDetail = () => {
 
     const [filmes,setFilmes] = useState([]);
+    const location = useLocation();
 
     const FILMESURL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.VITE_APIKEY}`
+
 
      useEffect(() => {
     axios.get(FILMESURL)
             .then((response)=> {
                 setFilmes(response.data)
+                localStorage.setItem('location', JSON.stringify(location.pathname));
             })
             .catch((err) => { console.log(err)})
      
   }, []);
+
 
     const [sortState, setSortState] = useState("descending");
     const sortMethods = {
