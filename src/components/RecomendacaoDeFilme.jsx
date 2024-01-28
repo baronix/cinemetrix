@@ -34,7 +34,7 @@ const RecomendacaoDeFilme = () => {
         }
     })
 
-    const [sortState, setSortState] = useState(!(localStorage.getItem('sorted')) ? "descending" : localStorage.getItem('sorted'));
+    const [sortState, setSortState] = useState(!(localStorage.getItem('sorted')) || localStorage.getItem('sorted') == false  ? "descending" : localStorage.getItem('sorted'));
     const sortMethods = {
         ascending: { method: (a, b) => (a.vote_average > b.vote_average ? 1 : -1) },
         descending: { method: (a, b) => (a.vote_average > b.vote_average ? -1 : 1) },
@@ -50,6 +50,10 @@ const RecomendacaoDeFilme = () => {
 
     const setScrollPosition = () => {
         sessionStorage.setItem('scrollPosition', window.pageYOffset)
+    }
+
+    const resetScrollPosition = () => {
+        sessionStorage.setItem('scrollPosition', 0)
     }
 
   return (

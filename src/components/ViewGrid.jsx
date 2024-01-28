@@ -49,6 +49,11 @@ const ViewGrid = () => {
         sessionStorage.setItem('scrollPosition', window.pageYOffset)
     }
 
+    const resetScrollPosition = () => {
+        sessionStorage.setItem('scrollPosition', 0)
+    }
+
+
   return (
     <>
     <AnimatedPage>

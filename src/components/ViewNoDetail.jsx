@@ -52,6 +52,7 @@ const ViewNoDetail = () => {
         sessionStorage.setItem('scrollPosition', window.pageYOffset)
     }
 
+
   return (
     <>
     <AnimatedPage>
