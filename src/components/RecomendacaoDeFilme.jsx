@@ -53,6 +53,20 @@ const RecomendacaoDeFilme = () => {
         sessionStorage.setItem('scrollPosition', window.pageYOffset)
     }
 
+      const resetScrollPosition = () => {
+        sessionStorage.setItem('scrollPosition', 0)
+    }
+
+    const ascendingReset = () => {
+        setAscending();
+        resetScrollPosition();
+    }
+
+    const descendingReset = () => {
+        setDescending();
+        resetScrollPosition();
+    }
+
   return (
     <>
     
@@ -62,8 +76,8 @@ const RecomendacaoDeFilme = () => {
             <div className='flex min-w-full justify-between px-4'>
                 <ViewFilter/>
                 <div className='flex pt-3 pb-5'>
-                    <button className='pr-3 lg:hover:scale-105 duration-300' onClick={setDescending}><FaSortAmountDownAlt color='white' size={20} onClick={() => setSortState("descending")}/></button>
-                    <button className='lg:hover:scale-105 duration-300' onClick={setAscending}><FaSortAmountUp color='white' size={20} onClick={() => setSortState("ascending")}/></button>
+                    <button className='pr-3 lg:hover:scale-105 duration-300' onClick={descendingReset}><FaSortAmountDownAlt color='white' size={20} onClick={() => setSortState("descending")}/></button>
+                    <button className='lg:hover:scale-105 duration-300' onClick={ascendingReset}><FaSortAmountUp color='white' size={20} onClick={() => setSortState("ascending")}/></button>
                 </div>
             </div>
 
