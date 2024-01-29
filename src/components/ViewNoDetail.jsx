@@ -68,7 +68,7 @@ const ViewNoDetail = () => {
         <div className='max-w-[1280px] grid grid-cols-2 lg:grid-cols-4 gap-4 justify-center items-center mx-auto px-4'>
             {filmes.results?.sort(sortMethods[sortState].method).map(filme => (
             <Link key={filme.id} to={`/movie/${filme.id}`} onClick={setScrollPosition}>
-              <div className="max-w-sm h-auto w-full  shadow-lg shadow-black rounded-md bg-gradient-to-r from-gray-100 to-gray-300 lg:hover:scale-105 duration-300">
+              <div className="max-w-sm h-auto w-full  shadow-lg shadow-black rounded-md bg-gradient-to-r from-gray-100 to-gray-300 lg:hover:scale-105 duration-300 animate-fade">
                 <div className="h-full flex-none bg-cover rounded-md text-center overflow-hidden" title={filme.title}>
                     <img className='rounded-md' src={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`} alt="" />
                 </div>

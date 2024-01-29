@@ -26,7 +26,7 @@ const BackToTop = () => {
   return (
     <div className="fixed text-[#e0a368] w-[100%] opacity-85 right-[-80%] lg:right-[-90%] z-90 lg:bottom-[50px] bottom-[35px] cursor-pointer">
         <FaArrowAltCircleUp
-        className="lg:hover:scale-105 duration-300 shadow-lg shadow-black rounded-[50%] mix-blend-exclusion"
+        className="lg:hover:scale-105 duration-300 lg:shadow-lg shadow-black rounded-[50%] mix-blend-exclusion"
         size={60} 
         onClick={scrollToTop}  
         style={{display: visible ? 'inline' : 'none'}}

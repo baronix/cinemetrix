@@ -70,7 +70,7 @@ const RecomendacaoDeFilme = () => {
             <div className='max-w-[1280px] justify-center items-center mx-auto px-4'>
                 {filmes.results?.sort(sortMethods[sortState].method).map(filme => (
                 <Link key={filme.id} to={`/movie/${filme.id}`} onClick={setScrollPosition}>
-                <div id={filme.id} className=" h-auto min-w-[100%] mb-3 max-w-[90%] flex shadow-lg shadow-black rounded-md bg-gradient-to-r from-gray-100 to-gray-300 lg:hover:scale-105 duration-300" >
+                <div id={filme.id} className=" h-auto min-w-[100%] mb-3 max-w-[90%] flex shadow-lg shadow-black rounded-md bg-gradient-to-r from-gray-100 to-gray-300 lg:hover:scale-105 duration-300 animate-fade" >
                     <div className=" h-full w-48 flex-none bg-cover rounded-l lg:rounded-t-none lg:rounded-l text-center overflow-hidden" title={filme.title}>
                         <img className='rounded-l' src={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`} alt="" />
                     </div>

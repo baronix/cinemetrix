@@ -65,7 +65,7 @@ const ViewGrid = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-4">
                 {filmes.results?.sort(sortMethods[sortState].method).map(filme => (
                 <Link key={filme.id} to={ `/movie/${filme.id}`} onClick={setScrollPosition}>
-                <article className="overflow-hidden rounded-lg shadow-lg relative z-0 lg:hover:scale-105 duration-300">
+                <article className="overflow-hidden rounded-lg shadow-lg relative z-0 lg:hover:scale-105 duration-300 animate-fade">
 
                     <div>
                         <img className="block h-auto w-full" src={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`}/>
